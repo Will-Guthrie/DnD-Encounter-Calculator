@@ -3,17 +3,19 @@ public class Combatant {
     private int AC;
     private int hitPoints;
     private int numAttacks;
-    private int damageDice;
     private int toHit;
     private int addToDamage;
+    private Dice damageDice;
+    private Dice d20;
 
-    Combatant(int AC, int hitPoints, int numAttacks, int damageDice, int toHit, int addToDamage) {
+    Combatant(int AC, int hitPoints, int numAttacks, int toHit, int addToDamage, int damageDice) {
         this.AC = AC;
         this.hitPoints = hitPoints;
         this.numAttacks = numAttacks;
-        this.damageDice = damageDice;
         this.toHit = toHit;
         this.addToDamage = addToDamage;
+        this.damageDice = new Dice(damageDice);
+        this.d20 = new Dice(20);
     }
 
     public void win() {
@@ -22,14 +24,6 @@ public class Combatant {
 
     public int getAC() {
         return AC;
-    }
-
-    public int getAddToDamage() {
-        return addToDamage;
-    }
-
-    public int getDamageDice() {
-        return damageDice;
     }
 
     public int getHitPoints() {
@@ -46,5 +40,13 @@ public class Combatant {
 
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
+    }
+
+    public int basicAttackDamage() {
+        return damageDice.roll() + addToDamage;
+    }
+
+    public int basicAttackToHit() {
+        return d20.roll() + toHit;
     }
 }
