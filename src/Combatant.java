@@ -20,9 +20,31 @@ public class Combatant {
         this.d20 = new Dice(20);
     }
 
-    public void win() {
+    private void win() {
         numWins++;
         avgHealthRemaining += hitPoints;
+    }
+
+    //Returns true if the attack kills the target
+    public boolean attack(Combatant target) {
+        for (int i = 0; i < numAttacks; i++) {
+            if (this.basicAttackToHit() > target.getAC()) {
+                target.setHitPoints(target.getHitPoints() - this.basicAttackDamage());
+                if (target.getHitPoints() <= 0) {
+                    this.win();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private int basicAttackDamage() {
+        return damageDice.roll() + addToDamage;
+    }
+
+    private int basicAttackToHit() {
+        return d20.roll() + toHit;
     }
 
     public int getAC() {
@@ -31,14 +53,6 @@ public class Combatant {
 
     public int getHitPoints() {
         return hitPoints;
-    }
-
-    public int getNumAttacks() {
-        return numAttacks;
-    }
-
-    public int getToHit() {
-        return toHit;
     }
 
     public void setHitPoints(int hitPoints) {
@@ -53,11 +67,4 @@ public class Combatant {
         return avgHealthRemaining;
     }
 
-    public int basicAttackDamage() {
-        return damageDice.roll() + addToDamage;
-    }
-
-    public int basicAttackToHit() {
-        return d20.roll() + toHit;
-    }
 }
