@@ -1,12 +1,14 @@
 public class Encounter {
 
-    private static Combatant PC = new Combatant(1, 1, 1, 8, 7, 8);
-    private static Combatant Monster = new Combatant(100, 1, 2, 6, 6, 10);
-    private static int numIterations = 300000;
+    private static Combatant PC = new Combatant(19, 50, 2,
+            8, 7, 8, 0);
+    private static Combatant Monster = new Combatant(16, 70, 2,
+            6, 6, 10, 0);
 
     public static void main (String[] args) {
+        int numIterations = 3000000;
         for (int i = 0; i < numIterations; i++) {
-            fightToDeath(PC, Monster);
+            rollInitiative(PC, Monster);
             PC.resetHitPoints();
             Monster.resetHitPoints();
         }
@@ -16,8 +18,21 @@ public class Encounter {
         " hit points remaining");
     }
 
+    private static void rollInitiative(Combatant comb1, Combatant comb2) {
+        int comb1Initiative = comb1.initiativeRoll();
+        int comb2Initiative = comb2.initiativeRoll();
+
+        if (comb1Initiative == comb2Initiative) { //In tie case, re-roll
+            rollInitiative(comb1, comb2);
+        } else if (comb1Initiative > comb2Initiative) {
+            fightToDeath(comb1, comb2);
+        } else {
+            fightToDeath(comb2, comb1);
+        }
+    }
+
     private static void fightToDeath(Combatant comb1, Combatant comb2) {
-        while (comb1.getHitPoints() > 0 && comb2.getHitPoints() > 0) { //FIXME: Add initiative rolls
+        while (comb1.getHitPoints() > 0 && comb2.getHitPoints() > 0) {
             if (comb1.attack(comb2)) return;
 
             if (comb2.attack(comb1)) return;

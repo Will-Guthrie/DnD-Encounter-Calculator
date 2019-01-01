@@ -6,18 +6,20 @@ public class Combatant {
     private int numAttacks;
     private int toHit;
     private int addToDamage;
+    private int initiativeMod;
     private Dice damageDice;
     private Dice d20;
     private double numWins;
     private double avgHealthRemaining;
 
-    Combatant(int AC, int maxHitPoints, int numAttacks, int toHit, int addToDamage, int damageDice) {
+    Combatant(int AC, int maxHitPoints, int numAttacks, int toHit, int addToDamage, int damageDice, int initiativeMod) {
         this.AC = AC;
         this.maxHitPoints = maxHitPoints;
         this.currentHitPoints = maxHitPoints;
         this.numAttacks = numAttacks;
         this.toHit = toHit;
         this.addToDamage = addToDamage;
+        this.initiativeMod = initiativeMod;
         this.damageDice = new Dice(damageDice);
         this.d20 = new Dice(20);
     }
@@ -56,6 +58,10 @@ public class Combatant {
 
     private int basicAttackToHit() {
         return d20.roll() + toHit;
+    }
+
+    public int initiativeRoll() {
+        return d20.roll() + initiativeMod;
     }
 
     public void resetHitPoints() {
