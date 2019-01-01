@@ -7,6 +7,8 @@ public class Combatant {
     private int addToDamage;
     private Dice damageDice;
     private Dice d20;
+    private double numWins;
+    private double avgHealthRemaining;
 
     Combatant(int AC, int hitPoints, int numAttacks, int toHit, int addToDamage, int damageDice) {
         this.AC = AC;
@@ -19,7 +21,8 @@ public class Combatant {
     }
 
     public void win() {
-        System.out.println("They had " + hitPoints + " health left!");
+        numWins++;
+        avgHealthRemaining += hitPoints;
     }
 
     public int getAC() {
@@ -40,6 +43,14 @@ public class Combatant {
 
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
+    }
+
+    public double getNumWins() {
+        return numWins;
+    }
+
+    public double getAvgHealthRemaining() {
+        return avgHealthRemaining;
     }
 
     public int basicAttackDamage() {
