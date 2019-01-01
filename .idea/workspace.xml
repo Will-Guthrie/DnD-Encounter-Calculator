@@ -29,8 +29,8 @@
       <file leaf-file-name="Encounter.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Encounter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+            <state relative-caret-position="221">
+              <caret line="13" column="104" selection-start-line="13" selection-start-column="104" selection-end-line="13" selection-end-column="104" />
             </state>
           </provider>
         </entry>
@@ -67,8 +67,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/Player.java" />
         <option value="$PROJECT_DIR$/src/Dice.java" />
-        <option value="$PROJECT_DIR$/src/Encounter.java" />
         <option value="$PROJECT_DIR$/src/Combatant.java" />
+        <option value="$PROJECT_DIR$/src/Encounter.java" />
       </list>
     </option>
   </component>
@@ -209,12 +209,12 @@
       <workItem from="1546063507573" duration="1063000" />
       <workItem from="1546138488885" duration="3080000" />
       <workItem from="1546358009363" duration="3221000" />
-      <workItem from="1546364796856" duration="1465000" />
+      <workItem from="1546364796856" duration="1581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8829000" />
+    <option name="totallyTimeSpent" value="8945000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
@@ -354,8 +354,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Encounter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        <state relative-caret-position="221">
+          <caret line="13" column="104" selection-start-line="13" selection-start-column="104" selection-end-line="13" selection-end-column="104" />
         </state>
       </provider>
     </entry>

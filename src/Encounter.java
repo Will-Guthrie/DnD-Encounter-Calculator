@@ -2,15 +2,16 @@ public class Encounter {
 
     private static Combatant PC = new Combatant(1, 1, 1, 8, 7, 8);
     private static Combatant Monster = new Combatant(100, 1, 2, 6, 6, 10);
+    private static int numIterations = 300000;
 
     public static void main (String[] args) {
-        for (int i = 0; i < 300000; i++) {
+        for (int i = 0; i < numIterations; i++) {
             fightToDeath(PC, Monster);
             PC.resetHitPoints();
             Monster.resetHitPoints();
         }
 
-        System.out.println("The PC has a " + PC.getNumWins()/3000 + "% chance of winning"); //FIXME: Magic number division
+        System.out.println("The PC has a " + PC.getNumWins()/numIterations*100 + "% chance of winning");
         System.out.println("When they won they had an average of " + PC.getAvgHealthRemaining()/PC.getNumWins() +
         " hit points remaining");
     }
