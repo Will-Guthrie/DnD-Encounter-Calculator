@@ -1,5 +1,6 @@
 public class Combatant {
 
+    //Character information
     private int AC;
     private int maxHitPoints;
     private int currentHitPoints;
@@ -9,6 +10,8 @@ public class Combatant {
     private int initiativeMod;
     private Dice damageDice;
     private Dice d20;
+
+    //Stats to track
     private double numWins;
     private double avgHealthRemaining;
 

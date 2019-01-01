@@ -3,12 +3,12 @@ public class Encounter {
     private static Combatant PC = new Combatant(19, 50, 2,
             8, 7, 8, 0);
     private static Combatant Monster = new Combatant(16, 70, 2,
-            6, 6, 10, 0);
+            6, 6, 10, 4);
 
     public static void main (String[] args) {
         int numIterations = 3000000;
         for (int i = 0; i < numIterations; i++) {
-            rollInitiative(PC, Monster);
+            rollInitiative(PC, Monster); //Starts combat until one of the combatants dies
             PC.resetHitPoints();
             Monster.resetHitPoints();
         }
@@ -32,6 +32,7 @@ public class Encounter {
     }
 
     private static void fightToDeath(Combatant comb1, Combatant comb2) {
+        //Trade rounds of attacks until one of them has not hit points left
         while (comb1.getHitPoints() > 0 && comb2.getHitPoints() > 0) {
             if (comb1.attack(comb2)) return;
 
