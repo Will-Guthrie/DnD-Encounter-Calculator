@@ -1,13 +1,13 @@
 public class Encounter {
 
-    private static Combatant PC = new Combatant(19, 40, 2, 8, 7, 8);
-    private static Combatant Monster = new Combatant(16, 70, 2, 6, 6, 10);
+    private static Combatant PC = new Combatant(1, 1, 1, 8, 7, 8);
+    private static Combatant Monster = new Combatant(100, 1, 2, 6, 6, 10);
 
     public static void main (String[] args) {
         for (int i = 0; i < 300000; i++) {
             fightToDeath(PC, Monster);
-            PC.setHitPoints(40);
-            Monster.setHitPoints(70);
+            PC.setHitPoints(1);  //FIXME: Magic number health resetting
+            Monster.setHitPoints(1);
         }
 
         System.out.println("The PC has a " + PC.getNumWins()/3000 + "% chance of winning"); //FIXME: Magic number division

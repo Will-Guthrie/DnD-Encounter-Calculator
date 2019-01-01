@@ -21,19 +21,28 @@ public class Combatant {
     }
 
     private void win() {
-        numWins++;
+        numWins += 1;
         avgHealthRemaining += hitPoints;
     }
 
     //Returns true if the attack kills the target
     public boolean attack(Combatant target) {
         for (int i = 0; i < numAttacks; i++) {
-            if (this.basicAttackToHit() > target.getAC()) {
+            int attackRoll = this.basicAttackToHit();
+
+            if (attackRoll == (20 + toHit)) { //Critical case, double number of damage dice
+                target.setHitPoints(target.getHitPoints() - (this.basicAttackDamage() + damageDice.roll()));
+            } else if (attackRoll == 1 + toHit) { //Natural 1 case, auto miss
+                continue;
+            } else if (attackRoll > target.getAC()) { //Regular hit case
                 target.setHitPoints(target.getHitPoints() - this.basicAttackDamage());
-                if (target.getHitPoints() <= 0) {
-                    this.win();
-                    return true;
-                }
+            } else { //Miss case
+                continue;
+            }
+
+            if (target.getHitPoints() <= 0) {
+                this.win();
+                return true;
             }
         }
         return false;
