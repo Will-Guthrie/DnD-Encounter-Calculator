@@ -1,7 +1,8 @@
 public class Combatant {
 
     private int AC;
-    private int hitPoints;
+    private int maxHitPoints;
+    private int currentHitPoints;
     private int numAttacks;
     private int toHit;
     private int addToDamage;
@@ -10,9 +11,10 @@ public class Combatant {
     private double numWins;
     private double avgHealthRemaining;
 
-    Combatant(int AC, int hitPoints, int numAttacks, int toHit, int addToDamage, int damageDice) {
+    Combatant(int AC, int maxHitPoints, int numAttacks, int toHit, int addToDamage, int damageDice) {
         this.AC = AC;
-        this.hitPoints = hitPoints;
+        this.maxHitPoints = maxHitPoints;
+        this.currentHitPoints = maxHitPoints;
         this.numAttacks = numAttacks;
         this.toHit = toHit;
         this.addToDamage = addToDamage;
@@ -22,7 +24,7 @@ public class Combatant {
 
     private void win() {
         numWins += 1;
-        avgHealthRemaining += hitPoints;
+        avgHealthRemaining += currentHitPoints;
     }
 
     //Returns true if the attack kills the target
@@ -31,11 +33,11 @@ public class Combatant {
             int attackRoll = this.basicAttackToHit();
 
             if (attackRoll == (20 + toHit)) { //Critical case, double number of damage dice
-                target.setHitPoints(target.getHitPoints() - (this.basicAttackDamage() + damageDice.roll()));
+                target.setCurrentHitPoints(target.getHitPoints() - (this.basicAttackDamage() + damageDice.roll()));
             } else if (attackRoll == 1 + toHit) { //Natural 1 case, auto miss
                 continue;
             } else if (attackRoll > target.getAC()) { //Regular hit case
-                target.setHitPoints(target.getHitPoints() - this.basicAttackDamage());
+                target.setCurrentHitPoints(target.getHitPoints() - this.basicAttackDamage());
             } else { //Miss case
                 continue;
             }
@@ -56,16 +58,20 @@ public class Combatant {
         return d20.roll() + toHit;
     }
 
+    public void resetHitPoints() {
+        this.currentHitPoints = maxHitPoints;
+    }
+
     public int getAC() {
         return AC;
     }
 
     public int getHitPoints() {
-        return hitPoints;
+        return currentHitPoints;
     }
 
-    public void setHitPoints(int hitPoints) {
-        this.hitPoints = hitPoints;
+    public void setCurrentHitPoints(int hitPoints) {
+        this.currentHitPoints = hitPoints;
     }
 
     public double getNumWins() {
