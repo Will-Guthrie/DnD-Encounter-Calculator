@@ -16,6 +16,10 @@ public class Combatant {
         this.addToDamage = addToDamage;
     }
 
+    public void win() {
+        System.out.println("They had " + hitPoints + " health left!");
+    }
+
     public int getAC() {
         return AC;
     }
@@ -38,5 +42,9 @@ public class Combatant {
 
     public int getToHit() {
         return toHit;
+    }
+
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
     }
 }
