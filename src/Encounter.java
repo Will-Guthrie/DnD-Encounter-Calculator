@@ -18,6 +18,7 @@ public class Encounter {
         " hit points remaining");
     }
 
+    //TODO: Make this function accept an array of Combatants so you can have move than 1v1 combat (figure out targeting)
     private static void rollInitiative(Combatant comb1, Combatant comb2) {
         int comb1Initiative = comb1.initiativeRoll();
         int comb2Initiative = comb2.initiativeRoll();
