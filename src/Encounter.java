@@ -1,5 +1,6 @@
 public class Encounter {
 
+    //TODO: Add support of getting user input/some ui
     private static Combatant PC = new Combatant(19, 50, 2,
             8, 7, 8, 0);
     private static Combatant Monster = new Combatant(16, 70, 2,
